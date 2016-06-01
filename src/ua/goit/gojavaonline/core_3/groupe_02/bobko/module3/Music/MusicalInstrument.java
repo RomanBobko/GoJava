@@ -1,5 +1,6 @@
-package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.Music;
+package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.music;
 
-public class MusicalInstrument {
+public abstract class MusicalInstrument {
     public abstract void play();
+
 }
