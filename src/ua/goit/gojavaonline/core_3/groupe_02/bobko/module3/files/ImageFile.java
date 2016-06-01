@@ -7,7 +7,6 @@ public class ImageFile extends File{
 
     @Override
     public File copyFile() {
-
         return new ImageFile(this.getFileName()+"_copy");
     }
 

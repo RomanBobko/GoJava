@@ -16,7 +16,6 @@ public class Directory extends File{
 
     @Override
     public File copyFile() {
-
         return new Directory(this);
     }
 
@@ -31,8 +30,6 @@ public class Directory extends File{
     public String toString(){
         return "\nDirectory " + getFileName();
     }
-
-    private List<File> files = new ArrayList<File>();
 
     public void setFiles(List<File> files){
         this.files = files;
@@ -68,9 +65,6 @@ public class Directory extends File{
         }
     }
 
-    public void copy(File file){
-
-    }
-
+    private List<File> files = new ArrayList<File>();
 
 }

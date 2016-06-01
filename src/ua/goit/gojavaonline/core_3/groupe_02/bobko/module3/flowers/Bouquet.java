@@ -3,8 +3,6 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.flowers;
 import java.util.*;
 
 public class Bouquet {
-    private List<Flower> flowers;
-
     public List<Flower> getFlowers(){
         return flowers;
     }
@@ -20,4 +18,5 @@ public class Bouquet {
         flowers.add(flower);
     }
 
+    private List<Flower> flowers;
 }
