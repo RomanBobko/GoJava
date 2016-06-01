@@ -1,4 +1,4 @@
-package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.music;
+package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.Music;
 
 import java.util.ArrayList;
 import java.util.List;

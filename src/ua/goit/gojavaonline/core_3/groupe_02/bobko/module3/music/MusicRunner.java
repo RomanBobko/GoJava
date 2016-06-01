@@ -1,4 +1,4 @@
-package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.music;
+package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.Music;
 
 import java.util.Scanner;
 
@@ -12,9 +12,9 @@ public class MusicRunner {
         Scanner user_input = new Scanner(System.in);
         String command = "";
         System.out.println("Commands: " +
-                "\n add - add music instrument to Music shop " +
+                "\n add - add Music instrument to Music shop " +
                 "\n sell - sell musical instrument" +
-                "\n demo - all music instruments play sound" +
+                "\n demo - all Music instruments play sound" +
                 "\n exit");
         while(!command.equals("exit")){
             command = user_input.next();
