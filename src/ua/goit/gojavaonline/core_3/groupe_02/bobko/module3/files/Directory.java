@@ -65,6 +65,6 @@ public class Directory extends File{
         }
     }
 
-    private List<File> files = new ArrayList<File>();
+    private List<File> files;// = new ArrayList<File>();
 
 }
