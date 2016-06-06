@@ -1,4 +1,4 @@
-package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4;
+package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.geometry;
 
 public class DistanceBetweenTwoPoints {
     public static double distance(double x1, double y1, double x2, double y2){

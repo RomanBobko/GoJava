@@ -1,4 +1,4 @@
-package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4;
+package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.geometry;
 
 public class Area {
     public static double triangle(double sideA, double sideB, double sideC){
