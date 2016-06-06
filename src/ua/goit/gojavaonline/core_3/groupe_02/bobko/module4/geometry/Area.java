@@ -1,20 +1,41 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.geometry;
 
 public class Area {
-    public static double triangle(double sideA, double sideB, double sideC){
-        double p = (sideA + sideB + sideC)/2;
-        double area = Math.sqrt( p * ( p - sideA ) * ( p - sideB) * ( p - sideC));
-        return area;
+    Area (Rectangle rectangle){
+        value = rectangle.getHeigth() * rectangle.getWidth();
+        figure = "Rectangle";
     }
 
-    public static double rectangle(double height, double widht){
-        double area = height*widht;
-        return area;
+    Area (Triangle triangle){
+        DistanceBetweenTwoPoints sideA = new DistanceBetweenTwoPoints( triangle.getP1(), triangle.getP2() );
+        DistanceBetweenTwoPoints sideB = new DistanceBetweenTwoPoints( triangle.getP2(), triangle.getP3() );
+        DistanceBetweenTwoPoints sideC = new DistanceBetweenTwoPoints( triangle.getP3(), triangle.getP1() );
+        double p = ( sideA.getValue() + sideB.getValue() + sideC.getValue() ) / 2;
+        value = Math.sqrt( p * ( p - sideA.getValue() ) * ( p - sideB.getValue()) * ( p - sideC.getValue()));
+        figure = "Triangle";
     }
 
-    public static double circle(double radius){
-        double area = Math.PI * Math.pow(radius,2);
-        return area;
+    Area (Circle circle){
+        value = Math.PI * Math.pow(circle.getRadius(),2);
+        figure = "Circle";
     }
+
+    @Override
+    public String toString(){
+        return String.format("Area of "+figure+" %.2f", value);
+    }
+
+    public boolean equals(Area anArea){
+        if ( this == anArea ){
+            return true;
+        }
+        if ( this.figure == anArea.figure && this.value == anArea.value){
+            return true;
+        }
+        return false;
+    }
+
+    private final double value;
+    private final String figure;
 
 }
