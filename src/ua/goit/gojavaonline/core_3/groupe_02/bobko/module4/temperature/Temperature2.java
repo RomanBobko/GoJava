@@ -10,6 +10,10 @@ public class Temperature2 implements Term {
         this.value = 0;
     }
 
+    private Temperature2 ( double value){
+        this.value = value;
+    }
+
     Temperature2 ( String temperature ){
         this.value = parse( temperature );
     }
@@ -33,9 +37,7 @@ public class Temperature2 implements Term {
     @Override
     public Term add( Term anTerm ){
         if (anTerm instanceof Temperature2){
-            Temperature2 temperature2 = new Temperature2();
-            temperature2.value = this.value + ((Temperature2) anTerm).value;
-            return temperature2;
+            return this.getValue( (Temperature2) anTerm);
         }
         return this;
     }
@@ -43,8 +45,7 @@ public class Temperature2 implements Term {
     @Override
     public Term add ( String temperature ){
         Temperature2 temperature2 = new Temperature2(temperature);
-        temperature2.value += this.value;
-        return temperature2;
+        return this.add(temperature2);
     }
 
     @Override
@@ -75,11 +76,21 @@ public class Temperature2 implements Term {
         return false;
     }
 
+    @Override
+    public int hashCode() {
+        long temp = Double.doubleToLongBits(value);
+        return (int) (temp ^ (temp >>> 32));
+    }
+
     public void setValue(String temperature){
         this.value = parse(temperature);
     }
 
     public double getValue(){
         return this.value;
+    }
+
+    private Temperature2 getValue( Temperature2 temp){
+        return new Temperature2( this.value + temp.value);
     }
 }
