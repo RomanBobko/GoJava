@@ -2,7 +2,11 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.temperature;
 
 import java.util.EmptyStackException;
 
-public class Temperature {
+public class Temperature implements Term {
+
+    private double value;
+    private Degree units;
+    enum Degree {C, F}
 
     Temperature() {
         value = 0.0;
@@ -18,66 +22,31 @@ public class Temperature {
         parse(temperature);
     }
 
-    public String getFarenheithValue() {
-        if (units == Degree.C) {
-            double res = ( 9.0 / 5.0 ) * value + 32.0;
-            return String.format( "%.2f", res ) + "F";
-        }
-        return String.format( "%.2f", value ) + units.name();
-    }
-
-    public String getCelsiusValue() {
-        if (units == Degree.F) {
-            double res = ( 5.0 / 9.0 ) * ( value - 32.0 );
-            return String.format( "%.2f", res ) + "C";
-        }
-        return String.format( "%.2f", value ) + units.name();
-    }
-
     @Override
-    public String toString(){
-        return String.format( "%.2f", value ) + units.name();
-    }
-
-    public boolean equals(Temperature anTemperature){
-        if ( this == anTemperature ){
-            return true;
-        }
-        if ( this.units == anTemperature.units ){
-            if ( this.value == anTemperature.value){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        else{
-            if (this.getCelsiusValue().equals(anTemperature.getCelsiusValue())){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-    }
-
-    public Temperature add(Temperature anTemperature){
+    public Term add(Term anTerm){
         Temperature result = new Temperature();
-        if ( this.getUnits() == anTemperature.getUnits() ){
+        if ( anTerm instanceof Temperature && this.getUnits() == ((Temperature) anTerm).getUnits()){
             if (this.units == Degree.C){
                 result.units = Degree.C;
             }
             else{
                 result.units = Degree.F;
             }
-            result.value = this.getValue() + anTemperature.getValue();
+            result.value = this.getValue() + ((Temperature) anTerm).getValue();
         }
         else{
             result.units = Degree.C;
-            result.value = this.getValueC() + anTemperature.getValueC();
+            result.value = this.getValueC() + ((Temperature) anTerm).getValueC();
 
         }
         return result;
+    }
+
+    @Override
+    public Term add(String temperature) {
+        Temperature temp = new Temperature(temperature);
+
+        return this.add(temp);
     }
 
     private void parse(String temperature) {
@@ -95,6 +64,34 @@ public class Temperature {
         this.units = degree;
     }
 
+    @Override
+    public String toString(){
+        return String.format( "%.2f", value ) + units.name();
+    }
+
+    @Override
+    public boolean equals(Object anObjetc){
+        if ( this == anObjetc ){
+            return true;
+        }
+        if (anObjetc instanceof Temperature && this.units == ((Temperature) anObjetc).units ){
+            if ( this.value == ((Temperature) anObjetc).value){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            if (this.getCelsiusValue().equals(((Temperature) anObjetc).getCelsiusValue())){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
     public double getValue(){
         return value;
     }
@@ -110,12 +107,20 @@ public class Temperature {
         return units;
     }
 
-    private double value;
-    private Degree units;
+    public String getFarenheithValue() {
+        if (units == Degree.C) {
+            double res = ( 9.0 / 5.0 ) * value + 32.0;
+            return String.format( "%.2f", res ) + "F";
+        }
+        return String.format( "%.2f", value ) + units.name();
+    }
 
-    enum Degree {C, F}
-
-
-
+    public String getCelsiusValue() {
+        if (units == Degree.F) {
+            double res = ( 5.0 / 9.0 ) * ( value - 32.0 );
+            return String.format( "%.2f", res ) + "C";
+        }
+        return String.format( "%.2f", value ) + units.name();
+    }
 
 }

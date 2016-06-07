@@ -1,10 +1,28 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.geometry;
 
-public class Rectangle {
+public class Rectangle implements Figure {
+    private Point leftBottom;
+    private double height;
+    private double width;
+
     Rectangle(Point leftBottom, double height, double widht ){
         this.leftBottom = leftBottom;
         this.height = height;
         this.width = widht;
+    }
+
+    @Override
+    public double getArea() {
+        return this.getHeigth() * this.getWidth();
+    }
+
+    @Override
+    public String toString(){
+        return String.format( "Rectangle \n" +
+                "Left bottom point( x = %.2f; y = %.2f );\n" +
+                "height = %.2f;\n" +
+                "width = %.2f;\n" +
+                "area = %.2f;", leftBottom.getX(), leftBottom.getY(), height, width, this.getArea());
     }
 
     public void setLeftBottom(Point leftBottom){
@@ -31,15 +49,4 @@ public class Rectangle {
         return width;
     }
 
-    @Override
-    public String toString(){
-        return String.format( "Rectangle \n" +
-                "Left bottom point( x = %.2f; y = %.2f );\n" +
-                "height = %.2f;\n" +
-                "width = %.2f;", leftBottom.getX(), leftBottom.getY(), height, width );
-    }
-
-    private Point leftBottom;
-    private double height;
-    private double width;
 }
