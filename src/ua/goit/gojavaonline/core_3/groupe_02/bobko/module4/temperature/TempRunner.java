@@ -5,23 +5,17 @@ import java.util.List;
 
 public class TempRunner {
     public static void main(String[] args) {
+        //36.6C = 97.88F
+        //0C = 32F;
 
-        Temperature2 t1 = new Temperature2("36.6C");
-        System.out.println(t1.getFarenheithValue());
-        System.out.println(t1.getCelsiusValue());
+        Temperature t1 = new Temperature("36.6C");
+        Temperature t2 = new Temperature("32F");
 
-        Temperature2 t2 = new Temperature2("97.88F");
-        System.out.println(t2.getFarenheithValue());
-        System.out.println(t2.getCelsiusValue());
+        Temperature2 t3 = new Temperature2("10C");
+        Temperature2 t4 = new Temperature2("10F");
 
-        Temperature2 t3 = ( Temperature2 ) t1.add(t2);
-        System.out.println(t3);
-        System.out.println(t3.getFarenheithValue());
-
-        Temperature2 t4 = ( Temperature2 ) t2.add("10C");
-        System.out.println(t4);
-
-        Temperature t5 = new Temperature("10C");
+        Temperature t5 = (Temperature) t1.add(t3);
+        Temperature2 t6 = (Temperature2) t4.add(t2);
 
         ArrayList<Term> list = new ArrayList<>();
         list.add( t1 );
@@ -29,10 +23,13 @@ public class TempRunner {
         list.add( t3 );
         list.add( t4 );
         list.add( t5 );
+        list.add( t6 );
 
         for (Term t:list){
             System.out.println(t);
+            System.out.println(t.getCelsiusValue());
             System.out.println(t.getFarenheithValue());
+
         }
 
 

@@ -24,28 +24,12 @@ public class Temperature implements Term {
 
     @Override
     public Term add(Term anTerm){
-        Temperature result = new Temperature();
-        if ( anTerm instanceof Temperature && this.getUnits() == ((Temperature) anTerm).getUnits()){
-            if (this.units == Degree.C){
-                result.units = Degree.C;
-            }
-            else{
-                result.units = Degree.F;
-            }
-            result.value = this.getValue() + ((Temperature) anTerm).getValue();
-        }
-        else{
-            result.units = Degree.C;
-            result.value = this.getValueC() + ((Temperature) anTerm).getValueC();
-
-        }
-        return result;
+        return new Temperature(this.getValue() + anTerm.getValue(), Degree.C);
     }
 
     @Override
     public Term add(String temperature) {
         Temperature temp = new Temperature(temperature);
-
         return this.add(temp);
     }
 
@@ -66,7 +50,7 @@ public class Temperature implements Term {
 
     @Override
     public String toString(){
-        return String.format( "%.2f", value ) + units.name();
+        return String.format( "Temperature = %.2f", value ) + units.name();
     }
 
     @Override
@@ -92,11 +76,8 @@ public class Temperature implements Term {
         }
     }
 
+    @Override
     public double getValue(){
-        return value;
-    }
-
-    public double getValueC(){
         if (units == Degree.F) {
             return ( 5.0 / 9.0 ) * ( value - 32.0 );
         }
