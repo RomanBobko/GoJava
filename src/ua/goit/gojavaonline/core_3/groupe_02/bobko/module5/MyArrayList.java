@@ -2,7 +2,7 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
 import java.util.Iterator;
 
-public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, Iterable<T>{
+public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>, Iterable<T>{
 
     private Object[] array;
     private int size;
@@ -26,7 +26,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
     }
 
     @Override
-    public boolean add(Comparable o) {
+    public boolean add(T o) {
         if (size == MAX_ARRAY_SIZE){
             return false;
         }
@@ -38,7 +38,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
     }
 
     @Override
-    public boolean remove(Comparable o) {
+    public boolean remove(T o) {
         for (int i = 0; i < size; i++){
             if ( ((T) array[i]).compareTo(o) == 0 ){
                 remove(i);
@@ -48,7 +48,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
         return false;
     }
 
-    public boolean removeAll(Comparable o) {
+    public boolean removeAll(T o) {
         boolean isRemoved = false;
         for (int i = 0; i < size; i++){
             if ( ((T) array[i]).compareTo(o) == 0 ){
@@ -93,7 +93,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
     }
 
     @Override
-    public Comparable get(int index) {
+    public T get(int index) {
         if (indexIsCorrect(index)){
             return (T)array[index];
         }
@@ -101,7 +101,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
     }
 
     @Override
-    public Comparable set(int index, Comparable o) {
+    public T set(int index, T o) {
         if (indexIsCorrect(index)){
             T oldObject = (T)array[index];
             array[index] = o;
@@ -111,7 +111,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
     }
 
     @Override
-    public Comparable remove(int index) {
+    public T remove(int index) {
         if (indexIsCorrect(index)){
             T removeObject = (T)array[index];
             for(int i = index; i<size - 1; i++){
@@ -127,7 +127,7 @@ public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, I
     public String toString(){
         String outString = "[";
         for (int i = 0; i<size; i++){
-            outString += (T)array[i].toString() + ", ";
+            outString += ((T)array[i]).toString() + ", ";
         }
         return outString.substring(0, outString.length()-2) + "]";
     }

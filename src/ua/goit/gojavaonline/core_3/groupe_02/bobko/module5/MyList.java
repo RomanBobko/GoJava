@@ -2,7 +2,7 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
 import java.util.List;
 
-public interface MyList<T extends Comparable> {
+public interface MyList<T> {
 
     int size();
     boolean isEmpty();

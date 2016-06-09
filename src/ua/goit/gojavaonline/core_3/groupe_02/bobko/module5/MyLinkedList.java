@@ -2,7 +2,7 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
 import java.util.Iterator;
 
-public class MyLinkedList<T extends Comparable> implements MyList, Iterable<Element>, Iterator<Element>{
+public class MyLinkedList<T extends Comparable> implements MyList<T>, Iterable<Element>, Iterator<Element>{
 
     private int size = 0;
     private Element firstElement;
@@ -20,7 +20,7 @@ public class MyLinkedList<T extends Comparable> implements MyList, Iterable<Elem
     }
 
     @Override
-    public boolean add(Comparable o) {
+    public boolean add(T o) {
         Element e = new Element(o);
         if (this.isEmpty()){
             firstElement = e;
@@ -36,7 +36,7 @@ public class MyLinkedList<T extends Comparable> implements MyList, Iterable<Elem
     }
 
     @Override
-    public boolean remove(Comparable o) {
+    public boolean remove(T o) {
         Element removeElement = this.getElement((T) o);
         if (removeElement != null){
             if (removeElement == firstElement){
@@ -91,20 +91,20 @@ public class MyLinkedList<T extends Comparable> implements MyList, Iterable<Elem
     }
 
     @Override
-    public Comparable get(int index) {
-        return this.getElement(index).getObject();
+    public T get(int index) {
+        return (T)this.getElement(index).getObject();
     }
 
     @Override
-    public Comparable set(int index, Comparable o) {
+    public T set(int index, T o) {
         Element element = this.getElement(index);
-        Comparable oldNumber = element.getObject();
+        T oldNumber = (T)element.getObject();
         element.setObject(o);
         return oldNumber;
     }
 
     @Override
-    public Comparable remove(int index) {
+    public T remove(int index) {
         Element removeElement = this.getElement(index);
         if (removeElement == firstElement){
             firstElement = removeElement.getNext();
@@ -118,7 +118,7 @@ public class MyLinkedList<T extends Comparable> implements MyList, Iterable<Elem
             previous.setNext(removeElement.getNext());
         }
         size--;
-        Comparable object = removeElement.getObject();
+        T object = (T)removeElement.getObject();
         removeElement.setNext(null);
         removeElement = null;
         return object;
