@@ -2,12 +2,18 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
 import java.util.Iterator;
 
-public class MyArrayList <T extends Comparable> implements MyList, Iterable<Element>, Iterator<Element>{
+public class MyArrayList<T extends Comparable> implements MyList, Iterator<T>, Iterable<T>{
 
-    private int size = 0;
-    private Element firstElement;
-    private Element currentElement;
-    private Element lastElement;
+    private Object[] array;
+    private int size;
+    private final int START_CAPACITY = 10;
+    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+    private int iteratorIndex;
+
+    MyArrayList(){
+        int size = 0;
+        array = new Object[START_CAPACITY];
+    }
 
     @Override
     public int size() {
@@ -21,51 +27,40 @@ public class MyArrayList <T extends Comparable> implements MyList, Iterable<Elem
 
     @Override
     public boolean add(Comparable o) {
-        Element e = new Element(o);
-        if (this.isEmpty()){
-            firstElement = e;
+        if (size == MAX_ARRAY_SIZE){
+            return false;
         }
-        else{
-            if (lastElement.getNext() == null){
-                lastElement.setNext(e);
-            }
+        if (isFull()){
+            this.resize();
         }
-        lastElement = e;
-        size++;
+        array[size++] = o;
         return true;
     }
 
     @Override
     public boolean remove(Comparable o) {
-        Element removeElement = this.getElement((T) o);
-        if (removeElement != null){
-            if (removeElement == firstElement){
-                firstElement = removeElement.getNext();
+        for (int i = 0; i < size; i++){
+            if ( ((T) array[i]).compareTo(o) == 0 ){
+                remove(i);
+                return true;
             }
-            else if (removeElement == lastElement){
-                lastElement = this.getElement(this.getIndex(removeElement)-1);
-                lastElement.setNext(null);
-            }
-            else{
-                Element previous = this.getElement(this.getIndex(removeElement)-1);
-                previous.setNext(removeElement.getNext());
-            }
-            size--;
-            removeElement.setNext(null);
-            removeElement = null;
-            return true;
         }
         return false;
     }
 
+    public boolean removeAll(Comparable o) {
+        boolean isRemoved = false;
+        for (int i = 0; i < size; i++){
+            if ( ((T) array[i]).compareTo(o) == 0 ){
+                remove(i--);
+                isRemoved = true;
+            }
+        }
+        return isRemoved;
+    }
+
     @Override
     public void clear() {
-        for(Element e : this){
-            e = null;
-        }
-        firstElement = null;
-        lastElement = null;
-        currentElement = null;
         size = 0;
     }
 
@@ -74,12 +69,10 @@ public class MyArrayList <T extends Comparable> implements MyList, Iterable<Elem
         for (int i = 0; i < this.size()-1; i++){
             boolean isSort = false;
             for (int j = 0; j < this.size() - i - 1; j++){
-                Element first = this.getElement(j);
-                Element second = this.getElement(j+1);
-                if (first.getObject().compareTo(second.getObject()) > 0){
-                    T temp = (T)first.getObject();
-                    first.setObject(second.getObject());
-                    second.setObject(temp);
+                if (((T)array[j]).compareTo((T)array[j + 1]) > 0){
+                    T temp = (T)array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
                     temp = null;
                     isSort = true;
                 }
@@ -90,108 +83,108 @@ public class MyArrayList <T extends Comparable> implements MyList, Iterable<Elem
         }
     }
 
+    public MyArrayList<T> sortImmutable(){
+        MyArrayList<T> sortedList = new MyArrayList<T>();
+        for (T o : this){
+            sortedList.add(o);
+        }
+        sortedList.sort();
+        return sortedList;
+    }
+
     @Override
     public Comparable get(int index) {
-        return this.getElement(index).getObject();
+        if (indexIsCorrect(index)){
+            return (T)array[index];
+        }
+        return null;
     }
 
     @Override
     public Comparable set(int index, Comparable o) {
-        Element element = this.getElement(index);
-        Comparable oldNumber = element.getObject();
-        element.setObject(o);
-        return oldNumber;
+        if (indexIsCorrect(index)){
+            T oldObject = (T)array[index];
+            array[index] = o;
+            return oldObject;
+        }
+        return null;
     }
 
     @Override
     public Comparable remove(int index) {
-        Element removeElement = this.getElement(index);
-        if (removeElement == firstElement){
-            firstElement = removeElement.getNext();
+        if (indexIsCorrect(index)){
+            T removeObject = (T)array[index];
+            for(int i = index; i<size - 1; i++){
+                array[i] = array[i + 1];
+            }
+            size --;
+            return removeObject;
         }
-        else if (removeElement == lastElement){
-            lastElement = this.getElement(index-1);
-            lastElement.setNext(null);
-        }
-        else{
-            Element previous = this.getElement(index-1);
-            previous.setNext(removeElement.getNext());
-        }
-        size--;
-        Comparable object = removeElement.getObject();
-        removeElement.setNext(null);
-        removeElement = null;
-        return object;
+        return null;
     }
 
     @Override
-    public boolean hasNext() {
-        if (this.isEmpty()){
-            return false;
+    public String toString(){
+        String outString = "[";
+        for (int i = 0; i<size; i++){
+            outString += (T)array[i].toString() + ", ";
         }
-        if (currentElement == null && firstElement != null){
-            return true;
-        }
-        if (currentElement.getNext() != null){
-           return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Element next() {
-        if (currentElement == null){
-            currentElement = firstElement;
-            return currentElement;
-        }
-        Element next = currentElement.getNext();
-        currentElement = next;
-        return next;
+        return outString.substring(0, outString.length()-2) + "]";
     }
 
     @Override
     public Iterator iterator() {
-        currentElement = null;
+        iteratorIndex = 0;
         return this;
     }
 
-    public Element getFirstElement(){
-        return firstElement;
+    @Override
+    public boolean hasNext() {
+        if (iteratorIndex < size){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    private Element getElement(int index){
-        if (index >= this.size()){
+    @Override
+    public T next() {
+        return (T)array[iteratorIndex++];
+    }
+
+    private boolean isFull(){
+        if (size - array.length == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    private int nextSize(){
+        if (array.length * 2 > MAX_ARRAY_SIZE){
+            return MAX_ARRAY_SIZE;
+        }
+        else{
+            return array.length * 2;
+        }
+    }
+
+    private void resize(){
+        Object[] newArray = new Object[this.nextSize()];
+        for (int i = 0; i<array.length; i++){
+            newArray[i] = array[i];
+        }
+        array = newArray;
+    }
+
+    private boolean indexIsCorrect(int index){
+        if (index >= size){
             throw new IndexOutOfBoundsException();
         }
-        int i = 0;
-        for(Element e : this){
-            if (i++ == index){
-                return e;
-            }
+        else{
+            return true;
         }
-        return null;
     }
-
-    private Element getElement(T o){
-        for (Element e : this){
-            if (e.getObject().equals(o)){
-                return e;
-            }
-        }
-        return null;
-    }
-
-    private int getIndex(Element element){
-        int i = 0;
-        for(Element e : this){
-            if (e == element){
-                return i;
-            }
-            i++;
-        }
-        return -1;
-    }
-
-
-
 }
