@@ -8,6 +8,7 @@ public class MusicShop {
         this.instruments = instruments;
     }
 
+
     public List<MusicalInstrument> getInstruments() {
         return instruments;
     }
@@ -29,7 +30,7 @@ public class MusicShop {
     }
 
     public void printStore(){
-        System.out.println("music shop stor:");
+        System.out.println("module6 shop stor:");
         int i = 0;
         for (MusicalInstrument instrument: instruments) {
             System.out.println(++i+" "+instrument.toString());

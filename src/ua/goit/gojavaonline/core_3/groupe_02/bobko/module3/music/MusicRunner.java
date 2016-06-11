@@ -14,9 +14,9 @@ public class MusicRunner {
         String command = "";
 
         System.out.println("Commands: \n" +
-                " add - add music instrument to music shop \n" +
+                " add - add module6 instrument to module6 shop \n" +
                 " sell - sell musical instrument\n" +
-                " demo - all music instruments play sound\n" +
+                " demo - all module6 instruments play sound\n" +
                 " exit");
 
         while(!command.equals("exit")){

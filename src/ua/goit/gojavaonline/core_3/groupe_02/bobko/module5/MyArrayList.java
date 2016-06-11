@@ -1,5 +1,7 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
+import org.omg.CORBA.ExceptionList;
+
 import java.util.Iterator;
 
 public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>, Iterable<T>{
@@ -7,7 +9,7 @@ public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>
     private Object[] array;
     private int size;
     private final int START_CAPACITY = 10;
-    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+    private static final int MAX_ARRAY_SIZE = 1000000;
     private int iteratorIndex;
 
     MyArrayList(){
@@ -163,16 +165,24 @@ public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>
     }
 
     private int nextSize(){
-        if (array.length * 2 > MAX_ARRAY_SIZE){
-            return MAX_ARRAY_SIZE;
+        if (array.length == MAX_ARRAY_SIZE){
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        if (MAX_ARRAY_SIZE / array.length >= 2){
+            System.err.println(array.length * 2);
+            return array.length * 2;
+
         }
         else{
-            return array.length * 2;
+            System.err.println(MAX_ARRAY_SIZE);
+            return MAX_ARRAY_SIZE;
         }
     }
 
     private void resize(){
+
         Object[] newArray = new Object[this.nextSize()];
+
         for (int i = 0; i<array.length; i++){
             newArray[i] = array[i];
         }

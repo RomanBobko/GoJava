@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 
 public class ListRunner {
     public static void main(String[] args) {
+
         MyArrayList<Integer> list = new MyArrayList<Integer>();
 
         for (int i = 0; i<25; i++){
@@ -18,6 +19,8 @@ public class ListRunner {
 
         System.out.println(list);
         System.out.println(list2);
+
+
 
     }
 }
