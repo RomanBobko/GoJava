@@ -13,16 +13,6 @@ public class MusicShop {
         return true;
     }
 
-    public boolean addToStore(MusicalInstrument instrument, int numberOfInstruments) {
-        if (numberOfInstruments <= 0){
-            return false;
-        }
-        for (int i = 0; i < numberOfInstruments; i++){
-            addToStore(instrument);
-        }
-        return true;
-    }
-
     public void sellInstruments(List<String> orderList) {
         if (orderList == null){
             return;

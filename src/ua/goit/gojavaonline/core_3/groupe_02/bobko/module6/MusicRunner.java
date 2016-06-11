@@ -8,16 +8,22 @@ public class MusicRunner {
         MusicShop musicShop = new MusicShop();
         ArrayList<String> orderList;
 
-        musicShop.addToStore(new Piano(), 2);
-        musicShop.addToStore(new Guitar(), 17);
-        musicShop.addToStore(new Trumpet(), 7);
+        for (int i = 0; i < 2; i++){
+            musicShop.addToStore(new Piano());
+        }
+        for (int i = 0; i < 16; i++){
+            musicShop.addToStore(new Guitar());
+        }
+        for (int i = 0; i < 7; i++){
+            musicShop.addToStore(new Trumpet());
+        }
 
         musicShop.printStore();
+
 
         HashMap<String, Integer> order1 = new HashMap<String, Integer>();
         order1.put("guitar", 7);
         order1.put("trumpet", 2);
-
         try {
             orderList = musicShop.prepareInstruments(order1);
             musicShop.sellInstruments(orderList);
@@ -42,8 +48,6 @@ public class MusicRunner {
         }finally {
             musicShop.printStore();
         }
-
-
 
         HashMap<String, Integer> order3 = new HashMap<String, Integer>();
         order3.put("piano", 1);
