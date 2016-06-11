@@ -46,7 +46,7 @@ public class MusicShop {
         for(Map.Entry entry : order.entrySet()){
 
             if (!assortment.contains(entry.getKey())){
-                throw new NonexistentMusicalInstrumentException("Instrument " + entry.getValue() + " noneexist!");
+                throw new NonexistentMusicalInstrumentException("Instrument " + entry.getKey() + " noneexist!");
             }
 
             if ((Integer)entry.getValue() <= 0){
