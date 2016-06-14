@@ -13,7 +13,6 @@ public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>
     private int iteratorIndex;
 
     MyArrayList(){
-        int size = 0;
         array = new Object[START_CAPACITY];
     }
 

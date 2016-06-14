@@ -4,7 +4,7 @@ import java.util.*;
 
 public class MusicShop {
 
-    private ArrayList<MusicalInstrument> instruments = new ArrayList<MusicalInstrument>();
+    private ArrayList<MusicalInstrument> instruments = new ArrayList<>();
     private HashSet<String> assortment = new HashSet<>();
 
     public boolean addToStore(MusicalInstrument instrument) {

@@ -38,24 +38,35 @@ public class MyLinkedList<T extends Comparable> implements MyList<T>, Iterable<E
     @Override
     public boolean remove(T o) {
         Element removeElement = this.getElement((T) o);
-        if (removeElement != null){
-            if (removeElement == firstElement){
-                firstElement = removeElement.getNext();
-            }
-            else if (removeElement == lastElement){
-                lastElement = this.getElement(this.getIndex(removeElement)-1);
-                lastElement.setNext(null);
-            }
-            else{
-                Element previous = this.getElement(this.getIndex(removeElement)-1);
-                previous.setNext(removeElement.getNext());
-            }
-            size--;
-            removeElement.setNext(null);
-            removeElement = null;
+        if (remove(removeElement) != null){
             return true;
         }
         return false;
+    }
+
+    @Override
+    public T remove(int index) {
+        Element removeElement = this.getElement(index);
+        return remove(removeElement);
+    }
+
+    private T remove(Element removeElement){
+        if (removeElement == firstElement){
+            firstElement = removeElement.getNext();
+        }
+        else if (removeElement == lastElement){
+            lastElement = this.getElement(this.getIndex(removeElement)-1);
+            lastElement.setNext(null);
+        }
+        else{
+            Element previous = this.getElement(this.getIndex(removeElement)-1);
+            previous.setNext(removeElement.getNext());
+        }
+        size--;
+        T object = (T)removeElement.getObject();
+        removeElement.setNext(null);
+        removeElement = null;
+        return object;
     }
 
     @Override
@@ -101,27 +112,6 @@ public class MyLinkedList<T extends Comparable> implements MyList<T>, Iterable<E
         T oldNumber = (T)element.getObject();
         element.setObject(o);
         return oldNumber;
-    }
-
-    @Override
-    public T remove(int index) {
-        Element removeElement = this.getElement(index);
-        if (removeElement == firstElement){
-            firstElement = removeElement.getNext();
-        }
-        else if (removeElement == lastElement){
-            lastElement = this.getElement(index-1);
-            lastElement.setNext(null);
-        }
-        else{
-            Element previous = this.getElement(index-1);
-            previous.setNext(removeElement.getNext());
-        }
-        size--;
-        T object = (T)removeElement.getObject();
-        removeElement.setNext(null);
-        removeElement = null;
-        return object;
     }
 
     @Override
