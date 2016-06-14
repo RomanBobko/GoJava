@@ -44,22 +44,22 @@ public class MusicShop {
             throws NonexistentMusicalInstrumentException, OrderNumberMusicalInstrumentsLessThanOneException {
         ArrayList<String> orderList = new ArrayList<>();
 
-        for(Map.Entry entry : order.entrySet()){
+        for(Map.Entry<String, Integer> entry : order.entrySet()){
 
             if (!assortment.contains(entry.getKey())){
                 throw new NonexistentMusicalInstrumentException("Instrument " + entry.getKey() + " noneexist!");
             }
 
-            if ((Integer)entry.getValue() <= 0){
+            if (entry.getValue() <= 0){
                 throw new OrderNumberMusicalInstrumentsLessThanOneException("Number " + entry.getValue() +
                         "is not allowed in order!");
             }
-            if ((Integer)entry.getValue() > numberOfStor((String)entry.getKey())){
-                throw new IndexOutOfBoundsException("In stock only " + numberOfStor((String)entry.getKey()) +
+            if (entry.getValue() > numberOfStor(entry.getKey())){
+                throw new IndexOutOfBoundsException("In stock only " + numberOfStor(entry.getKey()) +
                         " " + entry.getKey());
             }
-            for (int i = 0; i < (Integer) entry.getValue(); i++){
-                orderList.add((String)entry.getKey());
+            for (int i = 0; i < entry.getValue(); i++){
+                orderList.add(entry.getKey());
             }
         }
         return orderList;
