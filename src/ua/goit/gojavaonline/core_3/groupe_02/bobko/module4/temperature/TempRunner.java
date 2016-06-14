@@ -5,8 +5,6 @@ import java.util.List;
 
 public class TempRunner {
     public static void main(String[] args) {
-        //36.6C = 97.88F
-        //0C = 32F;
 
         Temperature t1 = new Temperature("36.6C");
         Temperature t2 = new Temperature("32F");

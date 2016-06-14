@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Directory extends File{
+
+    private List<File> files;
+
     Directory(String fileName){
         super(fileName);
         this.files = new ArrayList<File>();
     }
 
     Directory(Directory directory){
-        super(directory.getFileName()+"_copy");
+        super(directory.getFileName() + "_copy");
         this.files = new ArrayList<File>(directory.getFiles());
     }
 
@@ -21,7 +24,7 @@ public class Directory extends File{
 
     @Override
     public void open() {
-        for (File file:files){
+        for (File file : files){
             System.out.println(file.getFileName());
         }
     }
@@ -31,9 +34,6 @@ public class Directory extends File{
         return "\nDirectory " + getFileName();
     }
 
-    public void setFiles(List<File> files){
-        this.files = files;
-    }
 
     public List<File> getFiles(){
         return files;
@@ -41,7 +41,7 @@ public class Directory extends File{
 
     public void createFile(File file){
         boolean fileExist = false;
-        for (int i=0; i<files.size(); i++){
+        for (int i=0; i < files.size(); i++){
             if (files.get(i).getFileName().equals(file.getFileName())){
                 fileExist = true;
                 break;
@@ -57,7 +57,7 @@ public class Directory extends File{
     }
 
     public void deleteFile(String filename){
-        for (int i=0; i<files.size(); i++) {
+        for (int i=0; i < files.size(); i++) {
             if (files.get(i).getFileName().equals(filename)){
                 files.remove(i);
                 break;
@@ -65,6 +65,8 @@ public class Directory extends File{
         }
     }
 
-    private List<File> files;// = new ArrayList<File>();
+    public void setFiles(List<File> files){
+        this.files = files;
+    }
 
 }

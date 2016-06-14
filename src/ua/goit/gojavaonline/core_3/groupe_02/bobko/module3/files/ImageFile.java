@@ -1,6 +1,7 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.files;
 
 public class ImageFile extends File{
+
     ImageFile(String fileName){
         super(fileName);
     }

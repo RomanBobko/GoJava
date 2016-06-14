@@ -10,7 +10,7 @@ public class ListRunner {
 
         MyArrayList<Integer> list = new MyArrayList<Integer>();
 
-        for (int i = 0; i<25; i++){
+        for (int i = 0; i < 25; i++){
             Double d1 = Math.random() * 100;
             list.add(d1.intValue());
         }
@@ -20,6 +20,10 @@ public class ListRunner {
         System.out.println(list);
         System.out.println(list2);
 
+        MyLinkedList<Integer> list3 = new MyLinkedList<>();
+        list3.add(2);
+        list3.add(1);
+        System.out.println(list3);
 
 
     }

@@ -17,7 +17,8 @@ public class Circle implements Figure {
 
     @Override
     public String toString(){
-        return String.format("Circle\n center x = %.2f; y = %.2f\n radius = %.2f\n area = %.2f", center.getX(), center.getY(), radius, this.getArea() );
+        return String.format("Circle\n center x = %.2f; y = %.2f\n radius = %.2f\n area = %.2f",
+                center.getX(), center.getY(), radius, this.getArea() );
     }
 
     public void setCenter(Point center){

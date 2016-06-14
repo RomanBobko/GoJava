@@ -157,11 +157,17 @@ public class MyLinkedList<T extends Comparable> implements MyList<T>, Iterable<E
 
     @Override
     public String toString(){
-        String outString = "[";
+        StringBuffer outString = new StringBuffer();
+        outString.append("[");
         for (Element e : this){
-            outString += e.getObject().toString() + ", ";
+            outString.append(e.getObject().toString());
+            if (currentElement == lastElement){
+                continue;
+            }
+            outString.append(", ");
         }
-        return outString.substring(0, outString.length()-2) + "]";
+        outString.append("]");
+        return outString.toString();
     }
 
     public Element getFirstElement(){
@@ -200,7 +206,5 @@ public class MyLinkedList<T extends Comparable> implements MyList<T>, Iterable<E
         }
         return -1;
     }
-
-
 
 }

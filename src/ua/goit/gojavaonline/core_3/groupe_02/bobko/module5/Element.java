@@ -1,6 +1,7 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
 public class Element {
+
     private Comparable object;
     private Element nextElement;
 

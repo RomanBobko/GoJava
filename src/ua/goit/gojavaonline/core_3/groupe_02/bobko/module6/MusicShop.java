@@ -40,8 +40,9 @@ public class MusicShop {
         System.out.println("////////////////");
     }
 
-    public ArrayList<String> prepareInstruments(HashMap<String, Integer> order) throws NonexistentMusicalInstrumentException, OrderNumberMusicalInstrumentsLessThanOneException {
-        ArrayList<String> orderList = new ArrayList<String>();
+    public ArrayList<String> prepareInstruments(HashMap<String, Integer> order)
+            throws NonexistentMusicalInstrumentException, OrderNumberMusicalInstrumentsLessThanOneException {
+        ArrayList<String> orderList = new ArrayList<>();
 
         for(Map.Entry entry : order.entrySet()){
 
@@ -50,10 +51,12 @@ public class MusicShop {
             }
 
             if ((Integer)entry.getValue() <= 0){
-                throw new OrderNumberMusicalInstrumentsLessThanOneException("Number " + (Integer)entry.getValue() + "is not allowed in order!");
+                throw new OrderNumberMusicalInstrumentsLessThanOneException("Number " + entry.getValue() +
+                        "is not allowed in order!");
             }
             if ((Integer)entry.getValue() > numberOfStor((String)entry.getKey())){
-                throw new IndexOutOfBoundsException("In stock only " + numberOfStor((String)entry.getKey()) + " " + (String)entry.getKey());
+                throw new IndexOutOfBoundsException("In stock only " + numberOfStor((String)entry.getKey()) +
+                        " " + entry.getKey());
             }
             for (int i = 0; i < (Integer) entry.getValue(); i++){
                 orderList.add((String)entry.getKey());

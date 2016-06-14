@@ -4,14 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MusicShop {
-    public void setInstruments(List<MusicalInstrument> instruments) {
-        this.instruments = instruments;
-    }
 
-
-    public List<MusicalInstrument> getInstruments() {
-        return instruments;
-    }
+    private List<MusicalInstrument> instruments = new ArrayList<MusicalInstrument>();
 
     public void addToStore(MusicalInstrument instrument) {
         this.instruments.add(instrument);
@@ -55,5 +49,12 @@ public class MusicShop {
         return -1;
     }
 
-    private List<MusicalInstrument> instruments = new ArrayList<MusicalInstrument>();
+    public void setInstruments(List<MusicalInstrument> instruments) { //add new line
+        this.instruments = instruments;
+    }
+
+    public List<MusicalInstrument> getInstruments() {
+        return instruments;
+    }
+
 }

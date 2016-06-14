@@ -127,11 +127,17 @@ public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>
 
     @Override
     public String toString(){
-        String outString = "[";
-        for (int i = 0; i<size; i++){
-            outString += ((T)array[i]).toString() + ", ";
+        StringBuffer outString = new StringBuffer();
+        outString.append("[");
+        for (int i = 0; i < size; i++){
+            outString.append(((T)array[i]).toString());
+            if (i == size - 1){
+                continue;
+            }
+            outString.append(", ");
         }
-        return outString.substring(0, outString.length()-2) + "]";
+        outString.append("]");
+        return outString.toString();
     }
 
     @Override
@@ -169,12 +175,8 @@ public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>
             throw new ArrayIndexOutOfBoundsException();
         }
         if (MAX_ARRAY_SIZE / array.length >= 2){
-            System.err.println(array.length * 2);
             return array.length * 2;
-
-        }
-        else{
-            System.err.println(MAX_ARRAY_SIZE);
+        } else{
             return MAX_ARRAY_SIZE;
         }
     }

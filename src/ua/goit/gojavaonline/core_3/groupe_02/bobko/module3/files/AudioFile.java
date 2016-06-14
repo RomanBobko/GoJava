@@ -8,7 +8,7 @@ public class AudioFile extends File {
 
     @Override
     public File copyFile() {
-        return new AudioFile(this.getFileName()+"_copy");
+        return new AudioFile(this.getFileName() + "_copy");
     }
 
     @Override

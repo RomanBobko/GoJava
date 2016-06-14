@@ -20,8 +20,7 @@ public class MusicRunner {
 
         musicShop.printStore();
 
-
-        HashMap<String, Integer> order1 = new HashMap<String, Integer>();
+        HashMap<String, Integer> order1 = new HashMap<>();
         order1.put("guitar", 7);
         order1.put("trumpet", 2);
         try {
@@ -36,7 +35,7 @@ public class MusicRunner {
         }
 
 
-        HashMap<String, Integer> order2 = new HashMap<String, Integer>();
+        HashMap<String, Integer> order2 = new HashMap<>();
         order2.put("piano", 1);
         try {
             orderList = musicShop.prepareInstruments(order2);
@@ -49,7 +48,7 @@ public class MusicRunner {
             musicShop.printStore();
         }
 
-        HashMap<String, Integer> order3 = new HashMap<String, Integer>();
+        HashMap<String, Integer> order3 = new HashMap<>();
         order3.put("piano", 1);
         order3.put("guitar", 8);
         order3.put("trumpet", 6);
