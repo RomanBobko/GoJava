@@ -2,6 +2,12 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module6;
 
 import java.util.*;
 
+/*ToDo by Dmitrij Lenchuk
+* См. ошибки в модуле 3
+* */
+/*ToDo by Dmitrij Lenchuk
+* И опять же Typo!!!
+* */
 public class MusicShop {
 
     private ArrayList<MusicalInstrument> instruments = new ArrayList<>();
@@ -40,6 +46,9 @@ public class MusicShop {
         System.out.println("////////////////");
     }
 
+    /*ToDo by Dmitrij Lenchuk
+    * Может тут лучше выкидывать MusicShopException?
+    * */
     public ArrayList<String> prepareInstruments(HashMap<String, Integer> order)
             throws NonexistentMusicalInstrumentException, OrderNumberMusicalInstrumentsLessThanOneException {
         ArrayList<String> orderList = new ArrayList<>();

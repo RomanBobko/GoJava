@@ -2,6 +2,7 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
 import java.util.Iterator;
 
+
 public class MyLinkedList<T extends Comparable> implements MyList<T>, Iterable<Element>, Iterator<Element>{
 
     private int size = 0;

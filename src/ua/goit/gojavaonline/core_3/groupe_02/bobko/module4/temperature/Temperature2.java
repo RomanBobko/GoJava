@@ -2,6 +2,12 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.temperature;
 
 import java.util.EmptyStackException;
 
+/*ToDo by Dmitrij Lenchuk
+* Typo ошибки режут глаз
+* */
+/*ToDo by Dmitrij Lenchuk
+* Лишние пустые строки
+* */
 public class Temperature2 implements Term {
 
     private double value;
@@ -18,6 +24,9 @@ public class Temperature2 implements Term {
         this.value = parse( temperature );
     }
 
+    /*ToDo by Dmitrij Lenchuk
+    * Magic Numbers в коде!!!
+    * */
     private double parse( String temperature ) {
         double temp;
         temp = Double.valueOf(temperature.substring(0, temperature.length() - 1));

@@ -2,10 +2,16 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.temperature;
 
 import java.util.EmptyStackException;
 
+/*ToDo by Dmitrij Lenchuk
+* Typo ошибки режут глаз
+* */
 public class Temperature implements Term {
 
     private double value;
     private Degree units;
+    /*ToDo by Dmitrij Lenchuk
+    * C, F - не информативно. Все равно Magic Numbers
+    * */
     enum Degree {C, F}
 
     Temperature() {
@@ -33,7 +39,18 @@ public class Temperature implements Term {
         return this.add(temp);
     }
 
-    private void parse(String temperature) {
+    /*ToDo by Dmitrij Lenchuk
+    * Маленьких обманывать не хорошо.
+    * Нужно кидать правильный Exception
+    * */
+    /*ToDo by Dmitrij Lenchuk
+    * Разберись с degree. Такой код потенциально опасен.
+    * Нельзя привязываться к конкретным значениям.
+    * */
+    /*ToDo by Dmitrij Lenchuk
+    * Magic Numbers в коде!!!
+    * */
+     private void parse(String temperature) {
         double temp;
         Degree degree = null;
         String sufix = temperature.substring(temperature.length() - 1);
@@ -53,6 +70,18 @@ public class Temperature implements Term {
         return String.format( "Temperature = %.2f", value ) + units.name();
     }
 
+    /*ToDo by Dmitrij Lenchuk
+    * Нужно упростить операторы.
+    * Например:
+    *        if ( this.value == ((Temperature) anObjetc).value){
+    *            return true;
+    *        }
+    *        else{
+    *            return false;
+    *        }
+    * Можно записать как:
+    * return this.value == ((Temperature) anObjetc).value
+    * */
     @Override
     public boolean equals(Object anObjetc){
         if ( this == anObjetc ){
