@@ -81,6 +81,8 @@ public class Temperature implements Term {
     *        }
     * Можно записать как:
     * return this.value == ((Temperature) anObjetc).value
+    *
+    * ПыСы... Это, кстати, антипаттерн "Индийский код"
     * */
     @Override
     public boolean equals(Object anObjetc){
