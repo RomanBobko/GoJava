@@ -1,5 +1,8 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module4.geometry;
 
+/*ToDo by Dmitrij Lenchuk
+* Typo ошибки режут глаз
+* */
 public class Rectangle implements Figure {
 
     private Point leftBottom;

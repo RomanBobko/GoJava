@@ -3,9 +3,29 @@ package ua.goit.gojavaonline.core_3.groupe_02.bobko.module3.music;
 import java.util.ArrayList;
 import java.util.List;
 
+/*ToDo by Dmitrij Lenchuk
+* Typo ошибки режут глаз
+* */
+/*ToDo by Dmitrij Lenchuk
+* Можно не менять, но что касается антипаттернов, -
+* нельзя смешивать функционал и сервис.
+* Это по поводу логирования внутри методов
+* */
+/*ToDo by Dmitrij Lenchuk
+* Если реализовать методы equals() & hashCode() в классе MusicalInstrument,
+* код в этом классе станет намного красивее
+* */
 public class MusicShop {
 
+<<<<<<< HEAD
     private List<MusicalInstrument> instruments = new ArrayList<>();
+=======
+    /*ToDo by Dmitrij Lenchuk
+    * Можно поменять на
+    * private List<MusicalInstrument> instruments = new ArrayList<>();
+    * */
+    private List<MusicalInstrument> instruments = new ArrayList<MusicalInstrument>();
+>>>>>>> fce7624ec010e9da03d1b15b2f1f1ebb42ccf2ab
 
     public void addToStore(MusicalInstrument instrument) {
         this.instruments.add(instrument);

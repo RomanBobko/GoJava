@@ -12,6 +12,11 @@ public class Directory extends File{
         this.files = new ArrayList<File>();
     }
 
+    /*ToDo by Dmitrij Lenchuk
+    * К антипаттернам не относится, но тут не хватает рекурсии
+    * (в директории может быть директория).
+    * Не полная реализация
+    * */
     Directory(Directory directory){
         super(directory.getFileName() + "_copy");
         this.files = new ArrayList<File>(directory.getFiles());
@@ -22,7 +27,12 @@ public class Directory extends File{
         return new Directory(this);
     }
 
-    @Override
+
+    /*ToDo by Dmitrij Lenchuk
+    * Можно вообще в одну строку:
+    * files.forEach(file -> System.out.println(file.getFileName()));
+    * */
+    @ Override
     public void open() {
         for (File file : files){
             System.out.println(file.getFileName());
@@ -39,6 +49,10 @@ public class Directory extends File{
         return files;
     }
 
+    /*ToDo by Dmitrij Lenchuk
+    * Как пожелание:
+    *   можно переписать в синтаксисе foreach
+    * */
     public void createFile(File file){
         boolean fileExist = false;
         for (int i=0; i < files.size(); i++){
@@ -56,6 +70,11 @@ public class Directory extends File{
 
     }
 
+
+    /*ToDo by Dmitrij Lenchuk
+    * Как пожелание:
+    *   можно переписать в синтаксисе foreach
+    * */
     public void deleteFile(String filename){
         for (int i=0; i < files.size(); i++) {
             if (files.get(i).getFileName().equals(filename)){
