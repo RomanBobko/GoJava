@@ -5,7 +5,7 @@ import java.util.List;
 
 public class MusicShop {
 
-    private List<MusicalInstrument> instruments = new ArrayList<MusicalInstrument>();
+    private List<MusicalInstrument> instruments = new ArrayList<>();
 
     public void addToStore(MusicalInstrument instrument) {
         this.instruments.add(instrument);
