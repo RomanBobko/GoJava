@@ -1,5 +1,6 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module8.observable;
 
+
 public class Runner {
 
     public static void main(String[] args) {

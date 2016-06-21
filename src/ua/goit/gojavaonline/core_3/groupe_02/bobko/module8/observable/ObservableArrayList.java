@@ -1,20 +1,22 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module8.observable;
 
-import java.util.Observable;
+import java.util.*;
+
 import ua.goit.gojavaonline.core_3.groupe_02.bobko.module5.MyList;
-import java.util.Iterator;
 
 
-public class ObservableArrayList<T extends Comparable> extends Observable implements MyList<T>, Iterator<T>, Iterable<T>{
+public class ObservableArrayList<T extends Comparable> implements MyList<T>, Iterator<T>, Iterable<T>, ObservableList{
 
     private Object[] array;
     private int size;
     private final int START_CAPACITY = 10;
     private static final int MAX_ARRAY_SIZE = 1000000;
     private int iteratorIndex;
+    private List<ListObserver> observers;
 
     ObservableArrayList(){
         array = new Object[START_CAPACITY];
+        observers = new ArrayList<>();
     }
 
     @Override
@@ -36,7 +38,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
             this.resize();
         }
         array[size++] = o;
-        setChanged();
         notifyObservers();
         return true;
     }
@@ -46,7 +47,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
         for (int i = 0; i < size; i++){
             if ( ((T) array[i]).compareTo(o) == 0 ){
                 remove(i);
-                setChanged();
                 notifyObservers();
                 return true;
             }
@@ -62,7 +62,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
                 isRemoved = true;
             }
         }
-        setChanged();
         notifyObservers();
         return isRemoved;
     }
@@ -70,7 +69,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
     @Override
     public void clear() {
         size = 0;
-        setChanged();
         notifyObservers();
     }
 
@@ -94,7 +92,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
             }
         }
         if (hasSorted){
-            setChanged();
             notifyObservers();
         }
     }
@@ -121,7 +118,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
         if (indexIsCorrect(index)){
             T oldObject = (T)array[index];
             array[index] = o;
-            setChanged();
             notifyObservers();
             return oldObject;
         }
@@ -136,7 +132,6 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
                 array[i] = array[i + 1];
             }
             size --;
-            setChanged();
             notifyObservers();
             return removeObject;
         }
@@ -177,6 +172,32 @@ public class ObservableArrayList<T extends Comparable> extends Observable implem
     @Override
     public T next() {
         return (T)array[iteratorIndex++];
+    }
+
+    @Override
+    public boolean addObserver(ListObserver o){
+        if (observers.contains(o)){
+            return false;
+        }
+        observers.add(o);
+        return true;
+    }
+
+    @Override
+    public boolean deleteObserver(ListObserver o){
+        if (o == null){
+            return false;
+        }
+
+        return observers.remove(o);
+
+    }
+
+    @Override
+    public void notifyObservers(){
+        for (ListObserver o: observers){
+            o.update(this);
+        }
     }
 
     private boolean isFull(){
