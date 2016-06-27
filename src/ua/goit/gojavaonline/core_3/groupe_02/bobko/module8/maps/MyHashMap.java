@@ -8,6 +8,7 @@ public class MyHashMap<K, V> implements MyMap<K, V>, Iterable<MyHashMap.Node>, I
 
     private Node<K, V>[] table;
     private int size;
+    private final int DEFAULT_CAPACITY = 16;
     private final int MAX_CAPACITY = Integer.MAX_VALUE / 2;
     private Node<K, V> currentNode = null;
     private int currentIndex = 0;
@@ -46,7 +47,7 @@ public class MyHashMap<K, V> implements MyMap<K, V>, Iterable<MyHashMap.Node>, I
     }
 
     MyHashMap(){
-        table = new Node[25];
+        table = new Node[DEFAULT_CAPACITY];
     }
 
     MyHashMap(int capacity){
