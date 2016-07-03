@@ -16,12 +16,14 @@ public class EXUAMP3Downloader {
     private final String PROTOCOL_EXP = "^http://";
     private final String PROTOCOL = "http://";
     private final String LOAD = "http://www.ex.ua/load";
+    private final String SEARCH_EX = "<a href='/get(/[\\w]+)' title='([\\w\\s\\+\\=\\-\\!А-Яа-яіІёЁїЇ.,`'&%$#@()]+\\.mp3)'";
 
     private String destinationFolder;
     private String webPage;
 
-    public void download(ArrayList<DownloadLink> links){
+    public void download(){
         FileDownloader fd = new FileDownloader(destinationFolder);
+        ArrayList<DownloadLink> links = parseMP3Links();
         for (DownloadLink link : links){
             fd.download(link);
         }
@@ -43,7 +45,7 @@ public class EXUAMP3Downloader {
             e.printStackTrace();
         }
         String result = builder.toString();
-        Pattern pattern = Pattern.compile("<a href='/get(/\\w+)' title='([\\w\\s\\d\\+\\=\\-\\!.,'&%$#@()]+\\.mp3)'");
+        Pattern pattern = Pattern.compile(SEARCH_EX);
         Matcher matcher = pattern.matcher(result.replaceAll("&#39;", "'"));
 
         while (matcher.find()) {

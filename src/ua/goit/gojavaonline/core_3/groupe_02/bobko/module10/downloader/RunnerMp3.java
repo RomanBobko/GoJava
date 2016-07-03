@@ -25,8 +25,7 @@ public class RunnerMp3 {
 
         }
 
-        downloader.download(downloader.parseMP3Links());
-
+        downloader.download();
 
     }
 
