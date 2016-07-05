@@ -7,6 +7,11 @@ public class Triangle implements Figure {
     private Point p3;
 
     Triangle(Point p1, Point p2, Point p3){
+        double x = p1.getX();
+        double y = p1.getY();
+        if ((p2.getX() == x && p3.getX() == x) || (p2.getY() == y && p3.getY() == y)){
+            throw new ExceptionInInitializerError("All points on the line");
+        }
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;

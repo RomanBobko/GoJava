@@ -7,7 +7,7 @@ public class Circle implements Figure {
 
     Circle(Point center, double radius){
         this.center = center;
-        this.radius = radius;
+        this.setRadius(radius);
     }
 
     @Override
@@ -26,6 +26,9 @@ public class Circle implements Figure {
     }
 
     public void setRadius(double radius){
+        if (radius < 0 ){
+            throw new IllegalArgumentException("Radius " + radius + " not allow!");
+        }
         this.radius = radius;
     }
 
