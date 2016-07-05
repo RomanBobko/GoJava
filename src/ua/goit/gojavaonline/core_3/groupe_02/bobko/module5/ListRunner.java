@@ -1,10 +1,5 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.regex.Matcher;
-
 public class ListRunner {
     public static void main(String[] args) {
 

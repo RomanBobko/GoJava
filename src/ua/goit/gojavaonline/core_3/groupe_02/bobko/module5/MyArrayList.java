@@ -1,7 +1,5 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.module5;
 
-import org.omg.CORBA.ExceptionList;
-
 import java.util.Iterator;
 
 public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>, Iterable<T>{
