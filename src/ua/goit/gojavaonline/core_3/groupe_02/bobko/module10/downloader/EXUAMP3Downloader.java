@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class EXUAMP3Downloader {
 
     private final String EXUA_EXP = "^(http://)?(www\\.)?ex.ua/.+";
-    private final String PROTOCOL_EXP = "^http://";
+    private final String PROTOCOL_EXP = "^http://.+";
     private final String PROTOCOL = "http://";
     private final String LOAD = "http://www.ex.ua/load";
     private final String SEARCH_EX = "<a href='/get(/[\\w]+)' title='([\\w\\s\\+\\=\\-\\!А-Яа-яіІёЁїЇ.,`'&%$#@()]+\\.mp3)'";

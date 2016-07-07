@@ -13,10 +13,11 @@ public class FileDownloader {
     public boolean download(DownloadLink link){
 
         InputStream input = getInputStream(link);
+
         OutputStream output = getOutputStream(link);
 
         int byteCount = 0;
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[4096];
 
         try{
             while ((byteCount = input.read(buffer)) != -1){
