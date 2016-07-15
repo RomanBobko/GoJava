@@ -16,7 +16,7 @@ public class ExUaDownloader extends AbstractSiteDownloader {
     private final String PROTOCOL_EXP = "^http://.+";
     private final String PROTOCOL = "http://";
     private final String LOAD = "http://www.ex.ua/load";
-    private final String SEARCH_EX = "<a href='/get(/[\\w]+)' title='(.{1,100}\\.mp3)'";
+    private final String SEARCH_EX = "<a href='/get(/[\\w/]+)' title='(.{1,100}\\.mp3)'";
 
 
     private URL webPage;
@@ -32,7 +32,7 @@ public class ExUaDownloader extends AbstractSiteDownloader {
                 rootLink = new URL(webPage);
                 HttpURLConnection connection = (HttpURLConnection) rootLink.openConnection();
                 int code = connection.getResponseCode();
-                if (code == 200 || code == 201 || code == 301) {
+                if (code == 200 || code == 201 ) {
                     this.webPage = rootLink;
                 } else {
                     throw new InvalidLinkException("Web page not available!");
