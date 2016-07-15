@@ -1,7 +1,6 @@
 # Folders
 .idea/*
 out/*
-*/mentor/*
 
 # Class Files
 *.class
