@@ -1,7 +1,5 @@
 package ua.goit.gojavaonline.core_3.groupe_02.bobko.final_project.number_system;
 
-import java.lang.reflect.Array;
-import java.util.IllegalFormatException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +17,10 @@ public class DecimalBinaryNumberConverter implements DecimalBinaryNumber {
 
     @Override
     public String getBinaryValue() {
+        if (this.value == 0) {
+            return "0";
+        }
+
         StringBuffer res = new StringBuffer();
         int currentValue = this.value;
         while (currentValue > 0) {

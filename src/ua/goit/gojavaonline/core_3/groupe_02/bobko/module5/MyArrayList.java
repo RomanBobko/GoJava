@@ -10,7 +10,7 @@ public class MyArrayList<T extends Comparable> implements MyList<T>, Iterator<T>
     private static final int MAX_ARRAY_SIZE = 1000000;
     private int iteratorIndex;
 
-    MyArrayList(){
+    public MyArrayList(){
         array = new Object[START_CAPACITY];
     }
 
